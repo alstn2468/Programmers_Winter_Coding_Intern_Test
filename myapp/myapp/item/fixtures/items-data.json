@@ -1,0 +1,652 @@
+[
+    {
+        "model": "item.item",
+        "pk": 1,
+        "fields": {
+            "lecture_code": "PG1807-01",
+            "lecture": "WorldWideEnglish1",
+            "professor": "김영순",
+            "location": "A동403",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "월금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 2,
+        "fields": {
+            "lecture_code": "PG1807-02",
+            "lecture": "커뮤니케이션영어1",
+            "professor": "이영희",
+            "location": "A동203",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 3,
+        "fields": {
+            "lecture_code": "PG1807-03",
+            "lecture": "대학수학1",
+            "professor": "박정희",
+            "location": "B동102",
+            "start_time": 13,
+            "end_time": 15,
+            "day_of_week": "화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 4,
+        "fields": {
+            "lecture_code": "PG1807-04",
+            "lecture": "TOEIC1",
+            "professor": "최옥순",
+            "location": "A동302",
+            "start_time": 15,
+            "end_time": 16,
+            "day_of_week": "수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 5,
+        "fields": {
+            "lecture_code": "PG1807-05",
+            "lecture": "C프로그래밍",
+            "professor": "김미경",
+            "location": "C동104",
+            "start_time": 17,
+            "end_time": 18,
+            "day_of_week": "목"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 6,
+        "fields": {
+            "lecture_code": "PG1807-06",
+            "lecture": "논리회로",
+            "professor": "이명숙",
+            "location": "C동501",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 7,
+        "fields": {
+            "lecture_code": "PG1807-07",
+            "lecture": "컴퓨터공학세미나",
+            "professor": "박경숙",
+            "location": "B동608",
+            "start_time": 10,
+            "end_time": 11,
+            "day_of_week": "화수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 8,
+        "fields": {
+            "lecture_code": "PG1807-08",
+            "lecture": "자료구조",
+            "professor": "최순옥",
+            "location": "B동607",
+            "start_time": 11,
+            "end_time": 12,
+            "day_of_week": "목금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 9,
+        "fields": {
+            "lecture_code": "PG1807-09",
+            "lecture": "컴퓨터구조",
+            "professor": "최순옥",
+            "location": "C동304",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "월목"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 10,
+        "fields": {
+            "lecture_code": "PG1807-10",
+            "lecture": "C++프로그래밍",
+            "professor": "김현숙",
+            "location": "B동610",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "화금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 11,
+        "fields": {
+            "lecture_code": "PG1807-11",
+            "lecture": "아두이노프로그래밍",
+            "professor": "이미영",
+            "location": "B동204",
+            "start_time": 13,
+            "end_time": 15,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 12,
+        "fields": {
+            "lecture_code": "PG1807-12",
+            "lecture": "데이터베이스시스템",
+            "professor": "박미숙",
+            "location": "B동312",
+            "start_time": 15,
+            "end_time": 16,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 13,
+        "fields": {
+            "lecture_code": "PG1807-13",
+            "lecture": "컴퓨터그래픽스",
+            "professor": "최경희",
+            "location": "C동505",
+            "start_time": 17,
+            "end_time": 18,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 14,
+        "fields": {
+            "lecture_code": "PG1807-14",
+            "lecture": "운영체제",
+            "professor": "최경희",
+            "location": "C동506",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "월화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 15,
+        "fields": {
+            "lecture_code": "PG1807-15",
+            "lecture": "JAVA프로그래밍",
+            "professor": "김영미",
+            "location": "B동409",
+            "start_time": 10,
+            "end_time": 11,
+            "day_of_week": "월금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 16,
+        "fields": {
+            "lecture_code": "PG1807-16",
+            "lecture": "컴퓨터네트워크",
+            "professor": "이지영",
+            "location": "B동101",
+            "start_time": 11,
+            "end_time": 12,
+            "day_of_week": "화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 17,
+        "fields": {
+            "lecture_code": "PG1807-17",
+            "lecture": "멀티미디어시스템",
+            "professor": "박은정",
+            "location": "B동103",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 18,
+        "fields": {
+            "lecture_code": "PG1807-18",
+            "lecture": "컴퓨터비젼",
+            "professor": "최은주",
+            "location": "C동609",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 19,
+        "fields": {
+            "lecture_code": "PG1807-19",
+            "lecture": "암호론",
+            "professor": "김은영",
+            "location": "C동309",
+            "start_time": 13,
+            "end_time": 15,
+            "day_of_week": "화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 20,
+        "fields": {
+            "lecture_code": "PG1807-20",
+            "lecture": "확률및통계",
+            "professor": "이현주",
+            "location": "B동309",
+            "start_time": 15,
+            "end_time": 16,
+            "day_of_week": "수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 21,
+        "fields": {
+            "lecture_code": "PG1807-21",
+            "lecture": "정보시스템설계및구축",
+            "professor": "박은경",
+            "location": "B동510",
+            "start_time": 17,
+            "end_time": 18,
+            "day_of_week": "화수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 22,
+        "fields": {
+            "lecture_code": "PG1807-22",
+            "lecture": "웹서버프로그래밍",
+            "professor": "최현정",
+            "location": "C동312",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "목금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 23,
+        "fields": {
+            "lecture_code": "PG1807-23",
+            "lecture": "실용한문",
+            "professor": "김미정",
+            "location": "A동301",
+            "start_time": 10,
+            "end_time": 11,
+            "day_of_week": "월수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 24,
+        "fields": {
+            "lecture_code": "PG1807-24",
+            "lecture": "역사의이해",
+            "professor": "이지혜",
+            "location": "A동304",
+            "start_time": 11,
+            "end_time": 12,
+            "day_of_week": "화금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 25,
+        "fields": {
+            "lecture_code": "PG1807-25",
+            "lecture": "세계문화사",
+            "professor": "박선영",
+            "location": "A동405",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 26,
+        "fields": {
+            "lecture_code": "PG1807-26",
+            "lecture": "민족과통일",
+            "professor": "최지연",
+            "location": "A동509",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 27,
+        "fields": {
+            "lecture_code": "PG1807-27",
+            "lecture": "종교의이해",
+            "professor": "김혜진",
+            "location": "A동507",
+            "start_time": 13,
+            "end_time": 15,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 28,
+        "fields": {
+            "lecture_code": "PG1807-28",
+            "lecture": "철학의이해",
+            "professor": "이유진",
+            "location": "A동210",
+            "start_time": 15,
+            "end_time": 16,
+            "day_of_week": "월화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 29,
+        "fields": {
+            "lecture_code": "PG1807-29",
+            "lecture": "논리와사고",
+            "professor": "박지은",
+            "location": "A동316",
+            "start_time": 17,
+            "end_time": 18,
+            "day_of_week": "월금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 30,
+        "fields": {
+            "lecture_code": "PG1807-30",
+            "lecture": "언어의이해",
+            "professor": "최수진",
+            "location": "A동412",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "목"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 31,
+        "fields": {
+            "lecture_code": "PG1807-31",
+            "lecture": "직업윤리",
+            "professor": "김은지",
+            "location": "A동512",
+            "start_time": 10,
+            "end_time": 11,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 32,
+        "fields": {
+            "lecture_code": "PG1807-32",
+            "lecture": "인터넷윤리",
+            "professor": "이아름",
+            "location": "A동513",
+            "start_time": 11,
+            "end_time": 12,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 33,
+        "fields": {
+            "lecture_code": "PG1807-33",
+            "lecture": "문학과사회",
+            "professor": "박지현",
+            "location": "A동617",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "목"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 34,
+        "fields": {
+            "lecture_code": "PG1807-34",
+            "lecture": "동양고전의이해",
+            "professor": "최보람",
+            "location": "A동615",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 35,
+        "fields": {
+            "lecture_code": "PG1807-35",
+            "lecture": "서양고전의이해",
+            "professor": "김혜진",
+            "location": "A동617",
+            "start_time": 13,
+            "end_time": 15,
+            "day_of_week": "월화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 36,
+        "fields": {
+            "lecture_code": "PG1807-36",
+            "lecture": "전통문화의이해",
+            "professor": "박선영",
+            "location": "A동615",
+            "start_time": 15,
+            "end_time": 16,
+            "day_of_week": "목금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 37,
+        "fields": {
+            "lecture_code": "PG1807-37",
+            "lecture": "대중문화와매스미디어",
+            "professor": "김서연",
+            "location": "A동615",
+            "start_time": 17,
+            "end_time": 18,
+            "day_of_week": "수금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 38,
+        "fields": {
+            "lecture_code": "PG1807-38",
+            "lecture": "현대사회와디자인",
+            "professor": "이민지",
+            "location": "A동520",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "목"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 39,
+        "fields": {
+            "lecture_code": "PG1807-39",
+            "lecture": "미술의이해",
+            "professor": "박수빈",
+            "location": "A동615",
+            "start_time": 10,
+            "end_time": 11,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 40,
+        "fields": {
+            "lecture_code": "PG1807-40",
+            "lecture": "음악의이해",
+            "professor": "최지원",
+            "location": "A동620",
+            "start_time": 11,
+            "end_time": 12,
+            "day_of_week": "월"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 41,
+        "fields": {
+            "lecture_code": "PG1807-41",
+            "lecture": "의생활과환경",
+            "professor": "김현지",
+            "location": "A동617",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 42,
+        "fields": {
+            "lecture_code": "PG1807-42",
+            "lecture": "영화의이해",
+            "professor": "이예진",
+            "location": "A동614",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "월화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 43,
+        "fields": {
+            "lecture_code": "PG1807-43",
+            "lecture": "경제의이해",
+            "professor": "박예지",
+            "location": "A동314",
+            "start_time": 13,
+            "end_time": 15,
+            "day_of_week": "월금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 44,
+        "fields": {
+            "lecture_code": "PG1807-44",
+            "lecture": "현대사회와경영",
+            "professor": "최민서",
+            "location": "A동613",
+            "start_time": 15,
+            "end_time": 16,
+            "day_of_week": "화"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 45,
+        "fields": {
+            "lecture_code": "PG1807-45",
+            "lecture": "국제화와무역",
+            "professor": "김서현",
+            "location": "A동609",
+            "start_time": 17,
+            "end_time": 18,
+            "day_of_week": "수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 46,
+        "fields": {
+            "lecture_code": "PG1807-46",
+            "lecture": "법과사회",
+            "professor": "이서영",
+            "location": "A동609",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "목"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 47,
+        "fields": {
+            "lecture_code": "PG1807-47",
+            "lecture": "현대사회와교육",
+            "professor": "박수민",
+            "location": "A동617",
+            "start_time": 10,
+            "end_time": 11,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 48,
+        "fields": {
+            "lecture_code": "PG1807-48",
+            "lecture": "민주사회와시민의식",
+            "professor": "최예원",
+            "location": "A동612",
+            "start_time": 11,
+            "end_time": 12,
+            "day_of_week": "금"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 49,
+        "fields": {
+            "lecture_code": "PG1807-49",
+            "lecture": "사회복지개론",
+            "professor": "최예원",
+            "location": "A동618",
+            "start_time": 10,
+            "end_time": 12,
+            "day_of_week": "화수"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 50,
+        "fields": {
+            "lecture_code": "PG1807-50",
+            "lecture": "국제관계론",
+            "professor": "김영미",
+            "location": "A동415",
+            "start_time": 9,
+            "end_time": 10,
+            "day_of_week": "목금"
+        }
+    }
+]
