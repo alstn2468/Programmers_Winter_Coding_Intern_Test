@@ -9,6 +9,7 @@ class Item(models.Model):
     start_time = models.IntegerField()
     end_time = models.IntegerField()
     day_of_week = models.CharField(max_length=5)
+    is_register = models.BooleanField(default=False)
 
     def __str__(self):
         return self.lecture
