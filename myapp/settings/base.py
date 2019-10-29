@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp.home',
     'myapp.item',
-    'mathfilters'
+    'mathfilters',
+    'bootstrap_modal_forms',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [

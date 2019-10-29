@@ -1,3 +1,5 @@
+from django.contrib.messages import constants as messages
+from django.contrib.messages import constants as messages_constants
 from .base import *
 
 DEBUG = True
@@ -24,4 +26,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+MESSAGE_LEVEL = messages_constants.DEBUG
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
 }

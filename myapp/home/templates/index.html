@@ -1,5 +1,6 @@
 {% load static %}
 {% load mathfilters %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -22,10 +23,11 @@
             <span><i class="material-icons ic-search">search</i></span>
         </form>
 
+        {% if search_items %}
         {% for item in search_items %}
         <ul class="list-lecture">
             <li class="card-lecture" >
-                <a class="lecture-title" href="#" data-toggle="modal" data-target="#{{ item.id }}" data-id="{{ item.id }}">
+                <a class="lecture-title detail_lecture" href="#modal-lecture-info" data-toggle="modal" data-target="modal-lecture-info" data-id="{% url 'detail_lecture' item.id %}">
                 {{ item.lecture }}
                 </a>
                 <h6 class="lecture-time">
@@ -47,6 +49,9 @@
             </li>
         </ul>
         {% endfor %}
+        {% else %}
+        정보가 없습니다.
+        {% endif %}
     </section>
 
     <section class="section-list">
@@ -79,23 +84,27 @@
                 <div class="table-schedule-subject">
                     <ul class="list-lecture-item">
                         <li class="timeline-vertical">
-                            <div class="top-info today">
+                            <div class="top-info">
                                 <h4 class="day">Mon</h4>
                             </div>
                             <ul>
                                 {% for item in items %}
                                 {% if item.is_register and "월" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            <i class="material-icons ic-lecture-noti">assignment</i>
+                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            </div>
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -121,7 +130,7 @@
                                 {% for item in items %}
                                 {% if item.is_register and "화" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -130,7 +139,7 @@
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -157,7 +166,7 @@
                                 {% for item in items %}
                                 {% if item.is_register and "수" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -170,7 +179,7 @@
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -198,7 +207,7 @@
                                 {% for item in items %}
                                 {% if item.is_register and "목" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -211,7 +220,7 @@
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -240,7 +249,7 @@
                             {% for item in items %}
                                 {% if item.is_register and "금" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -253,7 +262,7 @@
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.id|mod:10|stringformat:"02d" }}">
+                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
                                         <a href="#">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
@@ -277,7 +286,7 @@
     </section>
 </div>
 
-<div class="modal fade" id="modal-lecture-info" role="dialog" aria-hidden="true" id="{{ post.id }}">
+<div class="modal fade" id="modal-lecture-info" role="dialog" aria-hidden="true" id="modal" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -286,23 +295,29 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h3 class="lecture-title">{{ post.lecture }}</h3>
+                <h3 class="lecture-title">{{ item.lecture }}</h3>
                 <ul class="lecture-info">
                     <li class="lecture-time">
                         <i class="material-icons ic-lecture-info">access_alarm</i>
-                        <span>강의 시간 : 09:00 - 10:50 | (월), (수)</span>
+                        <span>강의 시간 : {{ item.start_time|stringformat:"02d" }} - {{ item.end_time|stringformat:"02d" }} | 
+                        {% if item.day_of_week|length == 2 %}
+                        ({{ item.day_of_week.0 }}), ({{ item.day_of_week.1 }})
+                        {% else %}
+                        ({{ item.day_of_week.0 }})
+                        {% endif %}
+                        </span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">code</i>
-                        <span>교과목 코드 : A0000001</span>
+                        <span>교과목 코드 : {{ item.code }}</span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">school</i>
-                        <span>담당 교수 : 김진수</span>
+                        <span>담당 교수 : {{ item.professor }}</span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">business</i>
-                        <span>강의실 : 공학관 204</span>
+                        <span>강의실 : {{ item.location }}</span>
                     </li>
                 </ul>
                 <div class="lecture-description">
@@ -313,7 +328,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='{% url 'register' 2 %}'">과목 등록하기</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='{% url 'register' 4 %}'">과목 등록하기</button>
             </div>
         </div>
     </div>
@@ -377,12 +392,13 @@
                 </div>
                 <div class="right">
                     <button type="button" class="btn btn-light" data-dismiss="modal">확인</button>
-                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'register' 2 %}'" >과목 삭제하기</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' 4 %}'" >과목 삭제하기</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <div id="PopoverContent" style="display: none;">
     <h5 class="schedule-title">메모 등록하기</h5>
@@ -402,6 +418,15 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
 <script  src={% static 'js/script.js' %}></script>
-
+<script>
+    var x = document.getElementsByClassName("top-info");
+    var day = new Date();
+    x[day.getDay() - 1].setAttribute("class", "top-info today");
+</script
+{% if messages %}
+    {% for message in messages %}
+        <script>alert("{{message}}")</script>
+    {% endfor %}
+{% endif %}
 </body>
 </html>

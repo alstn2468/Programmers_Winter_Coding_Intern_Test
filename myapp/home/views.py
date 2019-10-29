@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+from django.views.generic import ListView
+from django.shortcuts import render, redirect, get_object_or_404
 from ..item.models import Item
 from django.db.models import Q
+from django.contrib import messages
+from bootstrap_modal_forms.generic import BSModalReadView
 
 
 def check_time(registed_start, registed_end, start, end):
@@ -9,7 +12,6 @@ def check_time(registed_start, registed_end, start, end):
 
 def index(request):
     items = Item.objects.all()
-    print(items.filter(is_register=True))
 
     return render(request, 'index.html', {
         'items': items,
@@ -39,51 +41,48 @@ def register(request, id):
     item = Item.objects.get(pk=id)
     registed_items = Item.objects.all().filter(is_register=True)
     day_of_week = item.day_of_week
+    check = True
 
     for registed_item in registed_items:
+        for day in day_of_week:
+            if day in registed_item.day_of_week:
+                check = check_time(registed_item.start_time, registed_item.end_time,
+                                   item.start_time, item.end_time)
 
-        if len(day_of_week) == 1 \
-                and len(registed_item.day_of_week) == 1:
-            if day_of_week == registed_item.day_of_week:
-                check = check_time(registed_item.start_time,
-                                   registed_item.end_time,
-                                   item.start_time,
-                                   item.end_time)
+        if not check:
+            break
 
-        elif len(day_of_week) == 1 \
-                and len(registed_item.day_of_week) == 2:
-            if day_of_week in registed_item.day_of_week:
-                check = check_time(registed_item.start_time,
-                                   registed_item.end_time,
-                                   item.start_time,
-                                   item.end_time)
-
-        elif len(day_of_week) == 2 \
-                and len(registed_item.day_of_week) == 1:
-            if registed_item.day_of_week in day_of_week:
-                check = check_time(registed_item.start_time,
-                                   registed_item.end_time,
-                                   item.start_time,
-                                   item.end_time)
-
-        else:
-            if day_of_week[0] in registed_item.day_of_week \
-                    or day_of_week[1] in registed_item.day_of_week:
-                check = check_time(registed_item.start_time,
-                                   registed_item.end_time,
-                                   item.start_time,
-                                   item.end_time)
-
-    if check:
+    if check and not item.is_register:
         item.is_register = not item.is_register
         item.save()
+        messages.add_message(request, messages.SUCCESS,
+                             "강의를 시간표에 추가 했습니다.")
 
+        return redirect("index")
+
+    messages.add_message(request, messages.ERROR,
+                         "시간표에 추가할 수 없는 강의 입니다.")
     return redirect("index")
 
 
 def delete(request, id):
-    item = Item.objects.get(pk=id)
-    item.is_register = not item.is_register
-    item.save()
+    try:
+        item = Item.objects.get(pk=id)
+        item.is_register = not item.is_register
+        item.save()
+        messages.add_message(request, messages.SUCCESS,
+                             "강의를 시간표에서 삭제 했습니다.")
+
+    except:
+        messages.add_message(request, messages.ERROR,
+                             "강의를 시간표에서 삭제하는데 실패 했습니다.")
 
     return redirect("index")
+
+
+class DetailLectureReadView(BSModalReadView):
+    model = Item
+
+
+class DetailTaskReadView(BSModalReadView):
+    model = Item
