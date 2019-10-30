@@ -473,7 +473,8 @@
 </div>
 
 <div id="PopoverContent" style="display: none;">
-    <form method="GET" action="" id="memo-form">
+    <form method="POST" action="" id="memo-form">
+        {% csrf_token %}
         <h5 class="schedule-title">메모 등록하기</h5>
         <div class="form-group">
             <label class="col-form-label">제목

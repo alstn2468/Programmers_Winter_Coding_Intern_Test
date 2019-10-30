@@ -1,17 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt
 from .models import Item, Memo
 from .forms import MemoForm
 
 
-@csrf_exempt
 def create(request, id):
     item = get_object_or_404(Item, pk=id)
     items = Item.objects.all()
 
-    if request.method == "GET":
-        form = MemoForm(request.GET)
+    if request.method == "POST":
+        form = MemoForm(request.POST)
 
         if form.is_valid():
             memo = form.save(commit=False)
@@ -27,7 +25,6 @@ def create(request, id):
     return redirect("/")
 
 
-@csrf_exempt
 def delete(request, id):
     try:
         memo = get_object_or_404(Memo, pk=id)
