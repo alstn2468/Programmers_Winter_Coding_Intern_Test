@@ -49,6 +49,8 @@ $(".lecture-time > a").click(function() {
     for (var i = 0; i < memos.length; i++) {
         memo_id = $(memos[i]).data("memo-id");
         title = $(memos[i]).data("memo-title");
+        title = title.replace(/_&_&_/gi, " ");
+
         var $tag = $(
             '<li class="memo-list">' +
                 '<div class="memo-content" data-toggle="tooltip" data-placement="top" title="" data-original-title="">' +
