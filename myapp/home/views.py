@@ -49,8 +49,6 @@ def register(request, id):
     day_of_week = item.day_of_week
     check = True
 
-    print(day_of_week)
-
     if len(day_of_week) == 1:
         qs = registed_items.filter(day_of_week__icontains=day_of_week)
 
@@ -82,11 +80,16 @@ def delete(request, id):
     try:
         item = Item.objects.get(pk=id)
         item.is_register = not item.is_register
+
+        for memo in item.memos.all():
+            memo.delete()
+
         item.save()
         messages.add_message(request, messages.SUCCESS,
                              "강의를 시간표에서 삭제 했습니다.")
 
-    except:
+    except Exception as e:
+        print(e)
         messages.add_message(request, messages.ERROR,
                              "강의를 시간표에서 삭제하는데 실패 했습니다.")
 
