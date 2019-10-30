@@ -19,7 +19,7 @@
     </section>
     <section class="section-nav">
         <form id="search-form" class="form-search" action="{% url 'search' %}">
-            <input type="text" placeholder="강의 검색" class="form-control" name="keyword" onclick="this.value=''" value={{keyword}}>
+            <input type="text" placeholder="강의 검색" class="form-control" name="keyword" onclick="this.value=''" value="{{keyword}}" autocomplete="off" >
             <span><i class="material-icons ic-search">search</i></span>
         </form>
 
@@ -473,7 +473,7 @@
 </div>
 
 <div id="PopoverContent" style="display: none;">
-    <form method="POST" action="" id="memo-form">
+    <form method="POST" action="" id="memo-form" autocomplete="off">
         {% csrf_token %}
         <h5 class="schedule-title">메모 등록하기</h5>
         <div class="form-group">
