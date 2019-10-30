@@ -19,7 +19,7 @@ $(".card-lecture").click(function() {
         "강의 시간 : " +
             String("0" + start).slice(-2) +
             ":00 - " +
-            String("0" + end).slice(-2) +
+            String("0" + (end - 1)).slice(-2) +
             ":50 | " +
             day
     );
