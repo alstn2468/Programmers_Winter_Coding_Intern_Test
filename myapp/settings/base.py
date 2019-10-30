@@ -29,8 +29,6 @@ INSTALLED_APPS = [
     'myapp.home',
     'myapp.item',
     'mathfilters',
-    'bootstrap_modal_forms',
-    'widget_tweaks'
 ]
 
 MIDDLEWARE = [

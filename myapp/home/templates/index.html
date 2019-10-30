@@ -1,6 +1,6 @@
 {% load static %}
 {% load mathfilters %}
-{% load widget_tweaks %}
+{% load escape_replace %}
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -26,8 +26,12 @@
         {% if search_items %}
         {% for item in search_items %}
         <ul class="list-lecture">
-            <li class="card-lecture" >
-                <a class="lecture-title detail_lecture" href="#modal-lecture-info" data-toggle="modal" data-target="modal-lecture-info" data-id="{% url 'detail_lecture' item.id %}">
+            <li class="card-lecture" 
+                data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                data-code="{{item.lecture_code}}" data-location="{{item.location}}">
+                <a class="lecture-title" href="#">
                 {{ item.lecture }}
                 </a>
                 <h6 class="lecture-time">
@@ -91,29 +95,45 @@
                                 {% for item in items %}
                                 {% if item.is_register and "월" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id="{{ memo.id }}" data-memo-title="{{ memo.title|escape_replace }}" data-memo-description="{{ memo.description|escape_replace }}">
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }} two-hr" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id={{ memo.id }} data-memo-title={{ memo.title|escape_replace }} data-memo-description={{ memo.description|escape_replace }}>
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% endif %}
@@ -130,25 +150,45 @@
                                 {% for item in items %}
                                 {% if item.is_register and "화" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
+                                            <i class="material-icons ic-lecture-noti">assignment</i>
+                                            <span class="lecture-noti-title" data-memo-id="{{ memo.id }}" data-memo-title="{{ memo.title|escape_replace }}" data-memo-description="{{ memo.description|escape_replace }}">
+                                            {{ memo.title }}
+                                            </span>
+                                            </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }} two-hr" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id={{ memo.id }} data-memo-title={{ memo.title|escape_replace }} data-memo-description={{ memo.description|escape_replace }}>
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% endif %}
@@ -166,29 +206,45 @@
                                 {% for item in items %}
                                 {% if item.is_register and "수" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id="{{ memo.id }}" data-memo-title="{{ memo.title|escape_replace }}" data-memo-description="{{ memo.description|escape_replace }}">
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }} two-hr" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id={{ memo.id }} data-memo-title={{ memo.title|escape_replace }} data-memo-description={{ memo.description|escape_replace }}>
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% endif %}
@@ -207,29 +263,45 @@
                                 {% for item in items %}
                                 {% if item.is_register and "목" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id="{{ memo.id }}" data-memo-title="{{ memo.title|escape_replace }}" data-memo-description="{{ memo.description|escape_replace }}">
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }} two-hr" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id={{ memo.id }} data-memo-title={{ memo.title|escape_replace }} data-memo-description={{ memo.description|escape_replace }}>
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% endif %}
@@ -249,29 +321,45 @@
                             {% for item in items %}
                                 {% if item.is_register and "금" in item.day_of_week %}
                                     {% if item.end_time|sub:item.start_time == 1  %}
-                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id="{{ memo.id }}" data-memo-title="{{ memo.title|escape_replace }}" data-memo-description="{{ memo.description|escape_replace }}">
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% elif item.end_time|sub:item.start_time == 2 %}
-                                    <li class="lecture-time two-hr hr-{{ item.start_time }}" data-event="lecture-{{ item.end_time|mod:9|stringformat:"02d" }}">
-                                        <a href="#">
+                                    <li class="lecture-time hr-{{ item.start_time }} two-hr" data-event="lecture-{{ item.end_time|mod:10|add:1|stringformat:"02d" }}">
+                                        <a href="#" 
+                                        data-id="{{item.id}}" data-lecture="{{item.lecture}}"
+                                        data-start="{{item.start_time}}" data-end="{{item.end_time}}"
+                                        data-professor="{{item.professor}}" data-day="{{item.day_of_week}}"
+                                        data-code="{{item.lecture_code}}" data-location="{{item.location}}">
                                             <div class="lecture-info">
                                                 <h6 class="lecture-title">{{ item.lecture }}</h6>
                                                 <h6 class="lecture-location">{{ item.location }}</h6>
                                             </div>
-                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
+                                            {% for memo in item.memos.all %}
+                                            <div class="lecture-noti" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ memo.title }}">
                                             <i class="material-icons ic-lecture-noti">assignment</i>
-                                            <span class="lecture-noti-title">과제 제목 텍스트</span>
+                                            <span class="lecture-noti-title" data-memo-id={{ memo.id }} data-memo-title={{ memo.title|escape_replace }} data-memo-description={{ memo.description|escape_replace }}>
+                                            {{ memo.title }}
+                                            </span>
                                             </div>
+                                            {% endfor %}
                                         </a>
                                     </li>
                                     {% endif %}
@@ -286,7 +374,7 @@
     </section>
 </div>
 
-<div class="modal fade" id="modal-lecture-info" role="dialog" aria-hidden="true" id="modal" >
+<div class="modal fade" id="modal-lecture-info" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -295,29 +383,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h3 class="lecture-title">{{ item.lecture }}</h3>
+                <h3 class="lecture-title" id="modal-lecture-info-title"></h3>
                 <ul class="lecture-info">
                     <li class="lecture-time">
                         <i class="material-icons ic-lecture-info">access_alarm</i>
-                        <span>강의 시간 : {{ item.start_time|stringformat:"02d" }} - {{ item.end_time|stringformat:"02d" }} | 
-                        {% if item.day_of_week|length == 2 %}
-                        ({{ item.day_of_week.0 }}), ({{ item.day_of_week.1 }})
-                        {% else %}
-                        ({{ item.day_of_week.0 }})
-                        {% endif %}
-                        </span>
+                        <span id="modal-lecture-info-time"></span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">code</i>
-                        <span>교과목 코드 : {{ item.code }}</span>
+                        <span id="modal-lecture-info-code"></span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">school</i>
-                        <span>담당 교수 : {{ item.professor }}</span>
+                        <span id="modal-lecture-info-professor"></span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">business</i>
-                        <span>강의실 : {{ item.location }}</span>
+                        <span id="modal-lecture-info-location"></span>
                     </li>
                 </ul>
                 <div class="lecture-description">
@@ -328,7 +410,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='{% url 'register' 4 %}'">과목 등록하기</button>
+                <button type="button" class="btn btn-primary" id="modal-lecture-info-register">과목 등록하기</button>
             </div>
         </div>
     </div>
@@ -343,23 +425,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h3 class="lecture-title">웹 프로그래밍</h3>
+                <h3 class="lecture-title" id="modal-lecture-task-title"></h3>
                 <ul class="lecture-info">
                     <li class="lecture-time">
                         <i class="material-icons ic-lecture-info">access_alarm</i>
-                        <span>강의 시간 : 09:00 - 10:50 | (월), (수)</span>
+                        <span id="modal-lecture-task-time"></span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">code</i>
-                        <span>교과목 코드 : A0000001</span>
+                        <span id="modal-lecture-task-code"></span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">school</i>
-                        <span>담당 교수 : 김진수</span>
+                        <span id="modal-lecture-task-professor"></span>
                     </li>
                     <li class="lecture-code">
                         <i class="material-icons ic-lecture-info">business</i>
-                        <span>강의실 : 공학관 204</span>
+                        <span id="modal-lecture-task-location"></span>
                     </li>
                 </ul>
                 <div class="lecture-description">
@@ -370,16 +452,7 @@
 
                 <div class="lecture-memo">
                     <h5 class="memo-header">메모</h5>
-                    <ul>
-                        <li class="memo-list">
-                            <div class="memo-content" data-toggle="tooltip" data-placement="top" title="" data-original-title="과제 설명 텍스트 과제 설명 텍스트 과제 설명 텍스트">
-                                <i class="material-icons ic-lecture-noti">assignment</i>
-                                <span class="lecture-noti-title">과제 제목 텍스트</span>
-                            </div>
-                            <div class="memo-btn">
-                                <a href=""><i class="material-icons ic-lecture-noti">delete</i></a>
-                            </div>
-                        </li>
+                    <ul id="modal-memo-list">
                     </ul>
                 </div>
             </div>
@@ -392,26 +465,27 @@
                 </div>
                 <div class="right">
                     <button type="button" class="btn btn-light" data-dismiss="modal">확인</button>
-                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' 4 %}'" >과목 삭제하기</button>
+                    <button type="button" class="btn btn-danger" id="modal-lecture-task-delete" >과목 삭제하기</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
 <div id="PopoverContent" style="display: none;">
-    <h5 class="schedule-title">메모 등록하기</h5>
-    <div class="form-group">
-        <label class="col-form-label">제목
-            <input type="text" class="form-control" id="recipient-name" placeholder="제목 추가">
-        </label>
-    </div>
-    <div class="form-group">
-        <label for="message-text" class="col-form-label">설명</label>
-        <textarea class="form-control" id="message-text" placeholder="설명 추가"></textarea>
-    </div>
-    <button type="button" class="btn btn-primary btn-save">등록</button>
+    <form method="GET" action="" id="memo-form">
+        <h5 class="schedule-title">메모 등록하기</h5>
+        <div class="form-group">
+            <label class="col-form-label">제목
+                <input type="text" class="form-control" id="recipient-name" placeholder="제목 추가" name="title">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="message-text" class="col-form-label">설명</label>
+            <textarea class="form-control" id="message-text" placeholder="설명 추가" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-save">등록</button>
+    </form>
 </div>
 <!-- partial -->
   <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
@@ -422,7 +496,7 @@
     var x = document.getElementsByClassName("top-info");
     var day = new Date();
     x[day.getDay() - 1].setAttribute("class", "top-info today");
-</script
+</script>
 {% if messages %}
     {% for message in messages %}
         <script>alert("{{message}}")</script>

@@ -1,13 +1,12 @@
-from django.views.generic import ListView
-from django.shortcuts import render, redirect, get_object_or_404
+# -*- coding: utf-8 -*-
 from ..item.models import Item
-from django.db.models import Q
 from django.contrib import messages
-from bootstrap_modal_forms.generic import BSModalReadView
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def check_time(registed_start, registed_end, start, end):
-    return True
+    return registed_start >= end or start >= registed_end
 
 
 def index(request):
@@ -19,7 +18,7 @@ def index(request):
     })
 
 
-def serarch(request):
+def search(request):
     items = Item.objects.all()
     search_items = items
     keyword = request.GET.get('keyword', '')
@@ -39,20 +38,34 @@ def serarch(request):
 def register(request, id):
     items = Item.objects.all()
     item = Item.objects.get(pk=id)
+
+    if item.is_register:
+        messages.add_message(request, messages.WARNING,
+                             "이미 등록된 강의입니다.")
+
+        return redirect("index")
+
     registed_items = Item.objects.all().filter(is_register=True)
     day_of_week = item.day_of_week
     check = True
 
-    for registed_item in registed_items:
-        for day in day_of_week:
-            if day in registed_item.day_of_week:
-                check = check_time(registed_item.start_time, registed_item.end_time,
-                                   item.start_time, item.end_time)
+    print(day_of_week)
+
+    if len(day_of_week) == 1:
+        qs = registed_items.filter(day_of_week__icontains=day_of_week)
+
+    else:
+        qs = registed_items.filter(Q(day_of_week__icontains=day_of_week[0])
+                                   | Q(day_of_week__icontains=day_of_week[1]))
+
+    for q in qs:
+        check = check_time(q.start_time, q.end_time,
+                           item.start_time, item.end_time)
 
         if not check:
             break
 
-    if check and not item.is_register:
+    if check:
         item.is_register = not item.is_register
         item.save()
         messages.add_message(request, messages.SUCCESS,
@@ -78,11 +91,3 @@ def delete(request, id):
                              "강의를 시간표에서 삭제하는데 실패 했습니다.")
 
     return redirect("index")
-
-
-class DetailLectureReadView(BSModalReadView):
-    model = Item
-
-
-class DetailTaskReadView(BSModalReadView):
-    model = Item

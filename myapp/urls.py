@@ -1,15 +1,14 @@
 from django.contrib import admin
 from django.urls import path
-from myapp.home import views
+import myapp.home.views as home_views
+import myapp.item.views as item_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name="index"),
-    path('search/', views.serarch, name="search"),
-    path('register/<int:id>', views.register, name="register"),
-    path('delete/<int:id>', views.delete, name="delete"),
-    path('detail-lecture/<int:id>',
-         views.DetailLectureReadView.as_view(), name="detail_lecture"),
-    path('detail-task/<int:id>',
-         views.DetailTaskReadView.as_view(), name="detail_task")
+    path('', home_views.index, name="index"),
+    path('search/', home_views.search, name="search"),
+    path('register/<int:id>', home_views.register, name="register"),
+    path('delete/<int:id>', home_views.delete, name="delete"),
+    path('create-memo/<int:id>', item_views.create, name="memo-create"),
+    path('delete-memo/<int:id>', item_views.delete, name="memo-delete")
 ]

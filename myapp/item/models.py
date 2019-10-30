@@ -13,3 +13,13 @@ class Item(models.Model):
 
     def __str__(self):
         return self.lecture
+
+
+class Memo(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE,
+                             related_name="memos")
+    title = models.CharField(max_length=30)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title

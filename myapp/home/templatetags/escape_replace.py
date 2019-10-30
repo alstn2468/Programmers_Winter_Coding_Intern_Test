@@ -5,4 +5,4 @@ register = template.Library()
 
 @register.filter
 def escape_replace(value):
-    return value.replace(" ", "/\s")
+    return value.replace(" ", "-")
