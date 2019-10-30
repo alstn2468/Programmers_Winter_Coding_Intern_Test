@@ -30,8 +30,9 @@ def create(request, id):
                     request, messages.SUCCESS, "메모 추가에 성공했습니다.")
 
                 return redirect("/")
+
     except Exception as e:
-        print("Excepion :", e)
+        print("Exception :", e)
         messages.add_message(request, messages.ERROR, "메모 추가에 실패했습니다.")
 
     return redirect("/")
