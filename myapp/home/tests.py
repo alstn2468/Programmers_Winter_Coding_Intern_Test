@@ -4,6 +4,10 @@ from .views import check_time
 
 
 class CheckTimeTrueTest(TestCase):
+    '''
+    강의 시간 충돌 확인 테스트 케이스 클레스
+    '''
+
     def test_check_time_true(self):
         '''
         강의 시간이 겹치지 않는 경우 확인 테스트 케이스
@@ -26,7 +30,3 @@ class CheckTimeTrueTest(TestCase):
                          "등록된 강의 중간에 등록할 강의가 시작하는 경우")
         self.assertFalse(check_time(10, 12, 10, 12),
                          "등록된 강의와 등록된 강의의 시간이 같은 경우")
-
-
-if __name__ == "__main__":
-    unittest.main()
