@@ -8,8 +8,8 @@ def create(request, id):
     '''메모를 생성하는 함수
 
     Args:
-        request: 메모 Form 데이터
-        id     : 강의의 pk
+        request : 메모 Form 데이터
+        id      : 강의의 pk
 
     Returns:
         redirect: 메모 생성,성공 실패 모두 메세지와 홈화면 이동

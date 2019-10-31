@@ -9,10 +9,10 @@ def check_time(registed_start, registed_end, start, end):
     '''강의 시간 충돌 여부 반환
 
     Args:
-        registed_start: 등록된 강의의 시작 시간
-        registed_end  : 등록된 강의의 종료 시간
-        start         : 등록할 강의의 시작 시간
-        end           : 등록할 강의의 종료 시간
+        registed_start : 등록된 강의의 시작 시간
+        registed_end   : 등록된 강의의 종료 시간
+        start          : 등록할 강의의 시작 시간
+        end            : 등록할 강의의 종료 시간
 
     Returns:
         Boolean: 충돌시  False 반환, 미충돌시 True 반환
@@ -24,7 +24,7 @@ def index(request):
     '''모든 강의 객체와 메인페이지 랜더링
 
     Args:
-        request: 사용자 요청
+        request : 사용자 요청
 
     Returns:
         모든 강의 객체와 함께 index.html 랜더링
@@ -41,7 +41,7 @@ def search(request):
     '''검색 키워드로 필터링된 목록 페이지 랜더링
 
     Args:
-        request: 사용자 요청
+        request : 사용자 요청
 
     Returns:
         필터링 되지않은 객체, 필터링한 객체, 검색키워드와 index.html 랜더링
@@ -67,8 +67,8 @@ def register(request, id):
     '''시간표에 강의를 등록
 
     Args:
-        request: 사용자 요청
-        id     : 강의의 pk 
+        request : 사용자 요청
+        id      : 강의의 pk 
 
     Returns:
         메인 화면으로 redirect
@@ -125,8 +125,8 @@ def delete(request, id):
     '''시간표에서 강의를 삭제
 
     Args:
-        request: 사용자 요청
-        id     : 강의의 pk 
+        request : 사용자 요청
+        id      : 강의의 pk 
 
     Returns:
         메인 화면으로 redirect

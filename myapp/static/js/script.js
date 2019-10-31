@@ -92,7 +92,6 @@ $(".lecture-time > a").click(function() {
         "onclick",
         "location.href='/delete/" + id + "'"
     );
-    // $(".modal-memo").html($(memos[0]).data("memo-title"));
     $("#memo-form").attr("action", "/create-memo/" + id);
     $("#memo-delete").attr("href", "location.href='/delete-delete/" + id + "'");
     $("#modal-lecture-task").modal("show");
