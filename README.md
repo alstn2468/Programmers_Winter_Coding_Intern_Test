@@ -23,6 +23,13 @@
 
 ### 얻은 점
 - `fixture`를 사용하는 방법
+- `fixture`사용을 위해 `csv`파일을 `json`파일로 변환
 - `settings.py`의 분리
 - custom template tag 생성 및 사용
 - 시간표 시간 충돌 검사 알고리즘 작성 및 테스트 케이스 작성
+- `jquery`를 이용한 데이터 핸들링
+- `HTML`의 구조적 이해와 활용
+
+### DEMO
+
+![DEMO GIF](./Demo/2.gif)
